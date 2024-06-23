@@ -2,17 +2,10 @@
 $id = filter_input(INPUT_GET, 'id');
 
 include_once '../class/Viagem.php';
-
 $viagem = new Viagem();
+
 $viagem->setId($id);
+$viagem->crud(2); // Assuming 2 is the code for deletion, adjust if necessary
+?>
 
-$resultado = $viagem->crud(2); // Supondo que 2 seja o código para exclusão na função CRUD
-
-if ($resultado === "Procedimento ok") {
-    header("Location: ?p=viagem/listar");
-    exit();
-} else {
-    echo "Erro ao excluir a viagem";
-    header("Refresh: 0.1; URL=?p=viagem/listar");
-    exit();
-}
+<meta http-equiv="refresh" content="0.1;URL=?p=viagem/listar">

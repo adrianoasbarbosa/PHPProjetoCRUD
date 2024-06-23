@@ -9,14 +9,15 @@ $titulo = "Cadastrar";
 if (isset($id)) {
     $viagem->setId($id);
     $dados = $viagem->listar($id);
-    foreach ($dados as $mostrar) {
-        $id_onibus = $mostrar['id_onibus'];
-        $id_passageiro = $mostrar['id_passageiro'];
-        $data_viagem = $mostrar['data_viagem'];
+    if (!empty($dados)) {
+        foreach ($dados as $mostrar) {
+            $id_onibus = $mostrar['id_onibus'];
+            $id_passageiro = $mostrar['id_passageiro'];
+            $data_viagem = $mostrar['data_viagem'];
+        }
+        $titulo = "Editar";
     }
-    $titulo = "Editar";
 }
-
 ?>
 
 <div class="col-sm-12 mb-4">
@@ -33,7 +34,7 @@ if (isset($id)) {
                     ID do Ônibus
                 </label>
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" id="txtid_onibus" name="txtid_onibus" placeholder="Digite o ID do ônibus" value="<?= isset($id) ? $id_onibus : "" ?>" />
+                    <input type="text" class="form-control" id="txtid_onibus" name="txtid_onibus" placeholder="Digite o ID do ônibus" value="<?= isset($id_onibus) ? $id_onibus : "" ?>" />
                 </div>
             </div>
 
@@ -42,7 +43,7 @@ if (isset($id)) {
                     ID do Passageiro
                 </label>
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" id="txtid_passageiro" name="txtid_passageiro" placeholder="Digite o ID do passageiro" value="<?= isset($id) ? $id_passageiro : "" ?>" />
+                    <input type="text" class="form-control" id="txtid_passageiro" name="txtid_passageiro" placeholder="Digite o ID do passageiro" value="<?= isset($id_passageiro) ? $id_passageiro : "" ?>" />
                 </div>
             </div>
 
@@ -51,7 +52,7 @@ if (isset($id)) {
                     Data da Viagem
                 </label>
                 <div class="col-sm-12">
-                    <input type="date" class="form-control" id="txtdata_viagem" name="txtdata_viagem" value="<?= isset($id) ? $data_viagem : "" ?>" />
+                    <input type="date" class="form-control" id="txtdata_viagem" name="txtdata_viagem" value="<?= isset($data_viagem) ? $data_viagem : "" ?>" />
                 </div>
             </div>
 

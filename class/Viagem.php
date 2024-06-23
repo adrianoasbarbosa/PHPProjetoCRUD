@@ -66,17 +66,32 @@ class Viagem
         }
     }
 
-    public function listar()
+    public function listar($id = NULL)
     {
         try {
             $this->con = new Conectar();
-            $sql = "SELECT * FROM viagem";
-            $executar = $this->con->query($sql);
-            return $executar->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT v.id, v.id_onibus, v.id_passageiro, v.data_viagem, o.modelo AS onibus_nome, p.nome AS passageiro_nome
+                    FROM viagem v
+                    JOIN onibus o ON v.id_onibus = o.id
+                    JOIN passageiro p ON v.id_passageiro = p.id";
+
+            if ($id !== NULL) {
+                $sql .= " WHERE v.id = :id";
+            }
+
+            $stmt = $this->con->prepare($sql);
+
+            if ($id !== NULL) {
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            }
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Erro de bd " . $e->getMessage();
         }
     }
+
 
     public function crud($opcao)
     {

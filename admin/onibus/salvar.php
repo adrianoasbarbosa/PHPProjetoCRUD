@@ -57,7 +57,7 @@ if (isset($id)) {
             <div class="form-group row">
                 <div class="col-sm-12">
                     <input type="submit" class="btn btn-<?= isset($id) ? "success" : "primary" ?> m-3" name="<?= isset($id) ? "btneditar" : "btnsalvar" ?>" id="<?= isset($id) ? "btneditar" : "btnsalvar" ?>" value="<?= isset($id) ? "Editar" : "Salvar" ?>" />
-                    <a class="btn btn-danger" href="?p=ob/listar"><i class="bi bi-arrow-return-left"></i></a>
+                    <a class="btn btn-danger" href="?p=onibus/listar"><i class="bi bi-arrow-return-left"></i></a>
                 </div>
             </div>
         </form>

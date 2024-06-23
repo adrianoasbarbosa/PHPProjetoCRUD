@@ -2,7 +2,7 @@
 $id = filter_input(INPUT_GET, 'id');
 
 include_once '../class/Onibus.php';
-$onuibs = new Onibus();
+$onibus = new Onibus();
 
 $onibus->setId($id);
 $onibus->crud(0);
